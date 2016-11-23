@@ -1,0 +1,3 @@
+Use links to put the files in the right place.  E.g.:
+
+    ln -v bashrc/bashrc ~/.bashrc
