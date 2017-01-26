@@ -80,11 +80,10 @@
 # Aliases
 #
 # Some people use a different file for aliases
-if [ -d "${HOME}/.bash_aliases" ]; then
-  for func in "${HOME}"/.bash_aliases/*; do
-    source "$func"
-  done
-elif [ -f "${HOME}/.bash_aliases" ]; then
+for alias in "${HOME}"/.bash_aliases/*; do
+  source "$alias"
+done
+if [ -f "${HOME}/.bash_aliases" ]; then
   source "${HOME}/.bash_aliases"
 fi
 #
@@ -129,11 +128,10 @@ fi
 # Functions
 #
 # Some people use a different file for functions
-if [ -d "${HOME}/.bash_functions" ]; then
-  for func in "${HOME}"/.bash_functions/*; do
-    source "$func"
-  done
-elif [ -f "${HOME}/.bash_functions" ]; then
+for func in "${HOME}"/.bash_functions/*; do
+  source "$func"
+done
+if [ -f "${HOME}/.bash_functions" ]; then
   source "${HOME}/.bash_functions"
 fi
 #
