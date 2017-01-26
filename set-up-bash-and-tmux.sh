@@ -17,3 +17,5 @@ else
     fi
   done
 fi
+
+sudo apt-get install tmux
