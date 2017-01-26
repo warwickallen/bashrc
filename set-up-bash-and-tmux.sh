@@ -2,7 +2,7 @@
 
 if [ -e ~/.bashrc ]
 then
-  echo "Set up aborted: ~/.bashrc already exists." >&2
+  echo "Set up bash and tmux aborted: ~/.bashrc already exists." >&2
 else
   ln -svf $(pwd)/bashrc.sh ~/.bashrc
 
