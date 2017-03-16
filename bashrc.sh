@@ -26,6 +26,8 @@
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
+[[ -f ~/.bash_local_pre ]] && source ~/.bash_local_pre
+
 # Shell Options
 #
 # See man bash for more options...
@@ -246,3 +248,5 @@ fi
 set -o vi
 
 export PYTHON=$(which python)
+
+[[ -f ~/.bash_local_post ]] && source ~/.bash_local_post
