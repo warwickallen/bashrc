@@ -247,6 +247,7 @@ fi
 
 # VI mode.  Yay!
 set -o vi
+export EDITOR=vim
 
 export PYTHON=$(which python)
 
