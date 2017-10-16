@@ -8,9 +8,11 @@
 function run-as
 {
   user=$1
+  logdir="$HOME/.run-as"
+  mkdir -p "$logdir"
   shift
   (
     set -x
-    ssh -Xfi"$HOME/.ssh/$user.rsa" "$user@localhost" "$@" >>"$HOME/.run-as.$user.$1.log" 2>&1
+    ssh -Xfi"$HOME/.ssh/$user.rsa" "$user@localhost" "$@" >>"$logdir/$user.$1.log" 2>&1
   )
 }
