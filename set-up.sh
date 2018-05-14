@@ -48,7 +48,7 @@ REPOS
     sudo apt-get update
     sudo apt dist-upgrade -y
     
-    sudo apt-get install -y     \
+    sudo apt-get install -y --allow-unauthenticated \
         build-essential         \
         vim                     \
         tmux                    \
