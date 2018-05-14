@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 if [ -e ~/.bashrc ]
 then
@@ -18,4 +18,7 @@ else
   done
 fi
 
-sudo apt-get install tmux
+if ! which tmux
+then
+    sudo apt-get install tmux
+fi
