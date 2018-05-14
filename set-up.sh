@@ -71,6 +71,7 @@ REPOS
         ssvnc                   \
         clipit                  \
         indicator-diskman       \
+        arandr                  \
     ;
     
     
@@ -79,10 +80,12 @@ REPOS
     # Keybase
     if ! [ -e keybase_amd64.deb ]
     then
-        curl -O https://prerelease.keybase.io/keybase_amd64.deb |
-        sudo dpkg -i keybase_amd64.deb
-        sudo apt-get install -yf
-        run_keybase
+        (
+            sudo curl -O https://prerelease.keybase.io/keybase_amd64.deb |
+            sudo dpkg -i keybase_amd64.deb
+            sudo apt-get install -yf
+            run_keybase
+        ) || echo "Could not install Keybase: $!"
     fi
     
     # Update CPAN
@@ -100,19 +103,22 @@ fi
 
 ## PERSONALISE
 
-pushd ~
+function git-clone-pull
+{
+    if ! [ -e "$2" ]
+    then
+        git clone "$1" "$2"
+    fi
+    cd "$2"
+    git checkout master
+    git pull
+}
 
+pushd ~
 if [ -e .bashrc ]
 then
-  mv .bashrc .bashrc.$(date +%s)
+    mv .bashrc .bashrc.$(date +%s)
 fi
-if ! [ -e bashrc ]
-then
-    git clone https://github.com/warwickallen/bashrc.git
-fi
-cd bashrc
-git checkout master
-git pull
+git-clone-pull https://github.com/warwickallen/bashrc.git bashrc
 . provision.sh
-
 popd
