@@ -69,6 +69,7 @@ REPOS
         scudcloud               \
         openssh-server          \
         ssvnc                   \
+        xpra                    \
         clipit                  \
         indicator-diskman       \
         arandr                  \
