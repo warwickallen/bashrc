@@ -5,10 +5,12 @@ INSTALL_DIR=/opt/install
 if $(sudo -v)
 then
 
-    sudo mkdir -vp $INSTALL_DIR
-    pushd $INSTALL_DIR
+    sudo apt-get update
+    sudo apt-get upgrade
     sudo apt-get -y install curl
     
+    sudo mkdir -vp $INSTALL_DIR
+    pushd $INSTALL_DIR
     
     
     ## KEYS
