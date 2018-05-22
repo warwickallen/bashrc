@@ -13,6 +13,7 @@ function run-as
   shift
   (
     set -x
-    ssh -Xfi"$HOME/.ssh/$user.rsa" "$user@localhost" "$@" >>"$logdir/$user.$1.log" 2>&1
+    logname="${logdir}/${user}.$(sed 's,/,~,g'<<<"$1").log"
+    ssh -Xfi"$HOME/.ssh/$user.rsa" "$user@localhost" "$@" >>"${logname}" 2>&1
   )
 }
