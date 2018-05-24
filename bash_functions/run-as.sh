@@ -44,19 +44,34 @@ function run-as
   mkdir -p "${logdir}"
   (
     logname="${logdir}/${user}.$(sed 's,/,~,g'<<<"${cmd}").log"
+
     function _ssh
     {
       set -x
       ssh -i"$HOME/.ssh/${user}.rsa" "${user}@localhost" "$@" >>"${logname}" 2>&1
     }
+
     if [ $use_xpra = true ]
     then
-      tcp_port=$(( $$ % 0x3000 + 0x1000 ))
+
+      # Find an available port.
+      read lower_port upper_port < /proc/sys/net/ipv4/ip_local_port_range
+      port_range_size=$(( ${upper_port} - ${lower_port} ))
+      function port_is_used { netstat -atun | grep -q ":$1\>"; }
+      while :
+      do
+        tcp_port=$(( $RANDOM % ${range_size} + ${lower_port} ))
+        port_is_used || break
+      done
+
       _ssh xpra start --bind-tcp localhost:${tcp_port} :${tcp_port} --start "'${cmd} ${params}'"
       sleep 1
       nohup xpra attach tcp:localhost:${tcp_port} >>"${logname}" 2>&1 &
+
     else
+
       _ssh -Xf ${cmd} ${params}
+
     fi
   )
 }
