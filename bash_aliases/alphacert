@@ -1,0 +1,1 @@
+alias aus-super-citrix="run-as -x warwick-alphacert chromium-browser --profile-directory=Default --app-id=haiffjcadagjlijoggckpgfnoeiflnem"
