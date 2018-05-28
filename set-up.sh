@@ -70,6 +70,7 @@ REPOS
         intellij-idea-community \
         scudcloud               \
         openssh-server          \
+        libpam-google-authenticator \
         ssvnc                   \
         xpra                    \
         clipit                  \
