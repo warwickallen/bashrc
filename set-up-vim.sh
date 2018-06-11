@@ -2,7 +2,7 @@
 
 function mksymlink
 {
-    file=$1; shift
+    target=$1; shift
     link=$1; shift
     if [ -e "$link" ]
     then
@@ -11,7 +11,7 @@ function mksymlink
     else
         (
             set -x
-            ln -sv "$link" "$file"
+            ln -sv "$HOME/$target" "$HOME/$link"
         )
     fi
 }
@@ -36,6 +36,6 @@ then
 fi
 git-clone-pull https://github.com/warwickallen/vimrc.git
 mksymlink vimrc .vim
-mksymlink .vimrc vimrc/vim.rc
+mksymlink vimrc/rc.vim .vimrc
 
 popd
