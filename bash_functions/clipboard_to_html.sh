@@ -4,6 +4,12 @@
 
 function clipboard_to_html
 {
+  if [ -z "$1" ]
+  then
+    clipboardfile=/dev/clipboard
+  else
+    clipboardfile="$1"
+  fi
   cat <(
   cat <<HERE
 <html>
@@ -27,7 +33,7 @@ HERE
     -e's, ,\&nbsp;,g' \
     -e's,^,<span style="font-family:monospace">,' \
     -e's,$,</span>,' \
-    /dev/clipboard
+    "$clipboardfile"
   ) <(cat <<HERE
 </pre>
 </div>
