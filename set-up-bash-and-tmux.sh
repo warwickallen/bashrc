@@ -9,6 +9,7 @@ else
   for i in \
     bash_aliases    \
     bash_functions  \
+    tmux-launch-sessions \
     tmux.conf
   do
     if [ ! -e ~/.$i ]

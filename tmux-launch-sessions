@@ -1,0 +1,16 @@
+#!/bin/bash -ex
+
+tmux new-session        -dsA
+tmux new-session    -tA -dsA2
+tmux new-session    -tA -dsA1
+tmux set-option     -tA1 prefix C-a
+tmux set-option     -tA2 prefix C-a
+
+tmux new-session   -dsBt -x383 -y97  'TMUX= tmux attach-session -tA1'
+tmux set-option     -tBt status-style "bg=#ee3300"
+tmux set-option  -a -tBt status-style "fg=#000022"
+
+tmux new-session   -dsBl -x383 -y97  'TMUX= tmux attach-session -tA2'
+tmux set-option     -tBl status-style "bg=cyan"
+
+tmux attach-session -tBt
